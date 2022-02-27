@@ -3,23 +3,25 @@ import ssr from 'vite-plugin-ssr/plugin'
 import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 
-const bla: UserConfig = {
+const config: UserConfig = {
   plugins: [react(), ssr()],
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
+        //entryFileNames: '[name].js',
         /*
   entryFileNames: (chunkInfo) => {
           const preserveFiles = ['pageFiles'];
+    console.log(chunkInfo.name)
           const useDefault = preserveFiles.includes(chunkInfo.name);
           return useDefault ? '[name].js' : 'assets/[hash].js';
         },
-        */
+        //*/
       }
     }
   }
 }
+export default config
   /*
 export default defineConfig({
   plugins: [react(), ssr()],
