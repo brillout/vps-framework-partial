@@ -7,19 +7,26 @@ const r = (p) => resolve(__dirname, p);
 
 const config: UserConfig = {
   plugins: [
-    react(),
     /*
+    react(),
     ssr(),
     frameworkBuilder(),
     */
   ],
   build: {
+    minify: false,
     lib: {
-      entry: r('./components/index.ts'),
-      formats: ['cjs']
+      entry: r("./components/index.ts"),
+      formats: ["cjs"],
       //name: 'VPS_FRAMEWORK',
-    }
-  }
+    },
+    rollupOptions: {
+      external: [
+        ...Object.keys(require("./package.json").devDependencies),
+        ...Object.keys(require("./package.json").peerDependencies),
+      ],
+    },
+  },
 };
 export default config;
 
