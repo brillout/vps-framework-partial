@@ -1,5 +1,6 @@
 import React from 'react'
 import { usePageContext } from '../utils/usePageContext'
+import './LinkStyle.css'
 
 export { Link }
 
