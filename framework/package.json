@@ -16,9 +16,14 @@
     ".": "./dist/index.js",
     "./vite-plugin-ssr": "./dist/vite-plugin-ssr.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
-    "typescript": "^4.5.5"
+    "@vitejs/plugin-react": "^1.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.5.5",
+    "vite": "^2.8.4",
+    "vite-plugin-ssr": "^0.3.59"
   }
 }
