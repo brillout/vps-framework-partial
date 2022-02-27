@@ -6,7 +6,20 @@ import { resolve } from "path";
 const r = (p) => resolve(__dirname, p);
 
 const config: UserConfig = {
-  plugins: [react(), ssr(), frameworkBuilder()],
+  plugins: [
+    react(),
+    /*
+    ssr(),
+    frameworkBuilder(),
+    */
+  ],
+  build: {
+    lib: {
+      entry: r('./components/index.ts'),
+      formats: ['cjs']
+      //name: 'VPS_FRAMEWORK',
+    }
+  }
 };
 export default config;
 
@@ -19,9 +32,7 @@ function frameworkBuilder(): Plugin {
       if (isSSR) {
         return configServer();
       } else {
-        return {
-          esbuild,
-        };
+        return configClient();
       }
     },
   };
@@ -31,7 +42,13 @@ function configClient(): UserConfig {
   return {
     build: {
       rollupOptions: {
-        external: require("./package.json").dependencies,
+        input: {
+          components: r("./components"),
+        },
+        external: [
+          ...Object.keys(require("./package.json").devDependencies),
+          ...Object.keys(require("./package.json").peerDependencies),
+        ],
       },
     },
     esbuild: {
